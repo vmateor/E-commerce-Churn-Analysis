@@ -5,6 +5,15 @@
 > This project answers five business-critical questions about customer retention using structured SQL analysis on a 50,000-row e-commerce dataset. It uncovers two distinct groups of customers who leave, identifies cart abandonment as the root cause of a full disengagement chain, and reveals a high-value customer segment whose departures cannot be predicted with any available behavioral data.
 
 ---
+## A Note on Key Terms
+Before diving in, here are a few terms used throughout this document:
+* **Churn / Churned:** A customer who has stopped doing business with the company. Churn rate is the percentage of customers who left out of the total.
+* **Lifetime Value (LTV):** The total amount of money a customer has spent with the company over their entire relationship. A customer with high LTV is a high-spending customer.
+* **Cart Abandonment Rate:** The percentage of times a customer added items to their shopping cart but did not complete the purchase.
+* **RFM:** A framework that scores customers on three dimensions: Recency (how recently they bought), Frequency (how often they buy), and Monetary (how much they spend). Used to identify the most valuable and most at-risk customers.
+* **Email Open Rate:** The percentage of marketing emails sent to a customer that they actually opened.
+
+---
 
 ## Project Overview
 
