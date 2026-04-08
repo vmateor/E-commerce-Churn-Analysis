@@ -4,7 +4,7 @@
 
 > This project answers five business-critical questions about customer retention using structured SQL analysis on a 50,000-row e-commerce dataset. It uncovers two distinct groups of customers who leave, identifies cart abandonment as the root cause of a full disengagement chain, and reveals a high-value customer segment whose departures cannot be predicted with any available behavioral data.
 
-\---
+---
 
 ## Project Overview
 
@@ -19,7 +19,7 @@ A key finding emerged early: **churn rate is consistent across all age groups (a
 
 The dataset was sourced from [Kaggle](https://www.kaggle.com/).
 
-\---
+---
 
 ## Tech Stack
 
@@ -29,7 +29,7 @@ The dataset was sourced from [Kaggle](https://www.kaggle.com/).
 |Power BI|Interactive dashboard and visual storytelling|
 |Excel|Data validation support|
 
-\---
+---
 
 ## Repository Structure
 
@@ -40,29 +40,29 @@ ecommerce-churn-analysis/
 │
 ├── sql/
 │   ├── exploration/
-│   │   ├── 01\_behavioral\_signals.sql          # Q1: Engagement vs friction by churn status
-│   │   ├── 02\_recency\_frequency\_ltv.sql       # Q2: Purchase recency, frequency and LTV
-│   │   ├── 03\_high\_value\_customer\_profile.sql # Q3: What top 20% LTV customers have in common
-│   │   ├── 04\_discounts\_and\_loyalty.sql       # Q4: Do promotions create loyalty or churn?
-│   │   ├── 05\_support\_interactions.sql        # Q5: How support calls relate to retention
-│   │   └── 06\_cart\_abandonment\_deep\_dive.sql  # Deep dive: Cart abandonment as churn root cause
+│   │   ├── 01_behavioral_signals.sql          # Q1: Engagement vs friction by churn status
+│   │   ├── 02_recency_frequency_ltv.sql       # Q2: Purchase recency, frequency and LTV
+│   │   ├── 03_high_value_customer_profile.sql # Q3: What top 20% LTV customers have in common
+│   │   ├── 04_discounts_and_loyalty.sql       # Q4: Do promotions create loyalty or churn?
+│   │   ├── 05_support_interactions.sql        # Q5: How support calls relate to retention
+│   │   └── 06_cart_abandonment_deep_dive.sql  # Deep dive: Cart abandonment as churn root cause
 │   │
 │   └── final/
-│       └── vw\_churn\_master.sql                # Master view loaded into Power BI
+│       └── vw_churn_master.sql                # Master view loaded into Power BI
 │
 ├── dashboard/
 │   └── screenshots/
-│       ├── 01\_overview.png
-│       ├── 02\_churn\_chain.png
-│       └── 03\_loyalty\_and\_value.png
+│       ├── 01_overview.png
+│       ├── 02_churn_chain.png
+│       └── 03_loyalty_and_value.png
 │
 └── data/
     └── README.md                              # Dataset source — raw data not included (link available for download)
 ```
 
-\---
+---
 
-## Business Questions \& Findings
+## Business Questions & Findings
 
 ### Q1 — What behaviors signal a customer is about to leave?
 
@@ -81,7 +81,7 @@ Churned customers behave measurably differently from active ones across every en
 
 These are not coincidental signals — they form a pattern of gradual withdrawal that begins with checkout friction and ends with departure.
 
-\---
+---
 
 ### Q2 — How do recency and frequency relate to churn?
 
@@ -99,7 +99,7 @@ Churn nearly triples from the most recent to most inactive group. The **90-day m
 
 Notably, churned customers had a *slightly higher* average order value than active ones ($134.76 vs $118.38). They didn't spend less per transaction — they simply stopped coming back.
 
-\---
+---
 
 ### Q3 — What do the most valuable customers have in common?
 
@@ -118,7 +118,7 @@ Every available explanation was examined and eliminated:
 
 **The bottom line:** This is the most important unsolved problem in the dataset. The company's best customers are leaving at an above-average rate and nothing in the available behavioral data explains or predicts it. Exit surveys are the only path forward.
 
-\---
+---
 
 ### Q4 — Do discounts create loyalty or just temporary buyers?
 
@@ -135,7 +135,7 @@ The benefit plateaus beyond 50% usage — more discounts beyond that threshold d
 
 The deeper issue is margin compression. Heavy discount users show a gross spend vs LTV gap of **$297**, compared to **$183** for low discount users — a 62% difference. Discounts are not changing how customers behave; they are simply buying at lower prices. The company is retaining customers at a lower margin per transaction.
 
-\---
+---
 
 ### Q5 — How do support interactions relate to loyalty?
 
@@ -152,7 +152,7 @@ The gap between best and worst segment: a customer who rarely calls and regularl
 
 Critically, these two extreme groups are **demographically and transactionally identical** — same average age, tenure, order value, return rate, and discount usage. The difference is not who they are; it's what they have experienced.
 
-\---
+---
 
 ### Deep Dive — Cart Abandonment as the Root Cause
 
@@ -167,30 +167,30 @@ Cart abandonment is the starting point of the entire disengagement chain:
 
 As cart abandonment rises, email engagement drops, support calls increase, and churn spikes — a clean, progressive chain across all 49,920 customers. **Fixing the checkout experience is the single most impactful lever available to reduce churn.**
 
-\---
+---
 
-## Master View: `vw\_churn\_master`
+## Master View: `vw_churn_master`
 
 The final transformation layer creates an enriched view on top of all raw columns with the following calculated fields:
 
 |Column|Description|
 |-|-|
-|`r\_score`|Recency score (NTILE 1–5)|
-|`f\_score`|Frequency score (NTILE 1–5)|
-|`m\_score`|Monetary score (NTILE 1–5)|
-|`ltv\_quintile`|LTV quintile ranking|
-|`ltv\_segment`|Labeled LTV tier (Top 20%, Upper-Mid, Mid, Bottom 40%)|
-|`discount\_usage\_tier`|Discount behavior bucket|
-|`support\_tier`|Support call volume bucket|
-|`cart\_abandonment\_tier`|Cart abandonment rate bucket|
-|`recency\_bucket`|Days since last purchase bucket|
-|`activity\_tier`|Login frequency bucket|
-|`age\_group`|Customer age bracket|
-|`risk\_segment`|Combined support × email engagement risk matrix|
+|`r_score`|Recency score (NTILE 1–5)|
+|`f_score`|Frequency score (NTILE 1–5)|
+|`m_score`|Monetary score (NTILE 1–5)|
+|`ltv_quintile`|LTV quintile ranking|
+|`ltv_segment`|Labeled LTV tier (Top 20%, Upper-Mid, Mid, Bottom 40%)|
+|`discount_usage_tier`|Discount behavior bucket|
+|`support_tier`|Support call volume bucket|
+|`cart_abandonment_tier`|Cart abandonment rate bucket|
+|`recency_bucket`|Days since last purchase bucket|
+|`activity_tier`|Login frequency bucket|
+|`age_group`|Customer age bracket|
+|`risk_segment`|Combined support × email engagement risk matrix|
 
 This view was connected directly to Power BI as the primary data source for the dashboard.
 
-\---
+---
 
 ## Dashboard
 
@@ -200,11 +200,11 @@ The Power BI dashboard has three pages:
 
 **Churn Chain** — Cart abandonment → email engagement drop → support call increase → churn progression, and a risk segment matrix comparing LTV and churn rate across four customer groups.
 
-**Loyalty \& Value** — Churn rate by days since last purchase and by discount usage tier, with gap metrics comparing churned vs active customers.
+**Loyalty & Value** — Churn rate by days since last purchase and by discount usage tier, with gap metrics comparing churned vs active customers.
 
 > Screenshots available in `/dashboard/screenshots/`
 
-\---
+---
 
 ## Recommended Actions
 
@@ -216,19 +216,19 @@ The Power BI dashboard has three pages:
 |Discounts reduce churn but compress revenue per transaction|Replace blanket discount campaigns with a loyalty rewards program|
 |Top 20% LTV customers churn at 38.3% with no behavioral warning|Launch exit surveys immediately for this segment|
 
-\---
+---
 
-## Assumptions \& Limitations
+## Assumptions & Limitations
 
-* `Days\_Since\_Last\_Purchase` is a static snapshot — no timestamps are available to track behavioral changes over time
-* `Credit\_Balance` definition was not confirmed (money owed vs. available credit) — findings related to this field should be validated before acting on them
-* Customers below 18 and above 150 years old exist in \~50 rows and were excluded as data quality issues
-* Cart abandonment values above 100% exist in \~30 rows and were excluded as data quality issues
-* `Social\_Media\_Engagement\_Score` is a composite score with unknown components and weights
+* `Days_Since_Last_Purchase` is a static snapshot — no timestamps are available to track behavioral changes over time
+* `Credit_Balance` definition was not confirmed (money owed vs. available credit) — findings related to this field should be validated before acting on them
+* Customers below 18 and above 150 years old exist in ~50 rows and were excluded as data quality issues
+* Cart abandonment values above 100% exist in ~30 rows and were excluded as data quality issues
+* `Social_Media_Engagement_Score` is a composite score with unknown components and weights
 * Support call *reasons* are not recorded — the data shows that call frequency predicts churn but cannot explain what problems are driving contacts
 * All findings describe correlations; confirming causality would require controlled experiments such as A/B testing checkout improvements
 
-\---
+---
 
 ## Dataset
 
@@ -238,7 +238,7 @@ The Power BI dashboard has three pages:
 
 > Raw data is not included in this repository. Download it directly from the Kaggle link above.
 
-\---
+---
 
 ## Author
 
